@@ -9,3 +9,14 @@ E:\Балаболка\Balabolka1\Balabolka1\obj\x86\Debug\GenerateResource.write
 E:\Балаболка\Balabolka1\Balabolka1\obj\x86\Debug\Balabolka1.exe
 E:\Балаболка\Balabolka1\Balabolka1\obj\x86\Debug\Balabolka1.pdb
 E:\Балаболка\Balabolka1\Balabolka1\bin\Debug\Balabolka1.exe.config
+C:\Users\RuStep\Downloads\RuStep-Balabolka-21c8949\RuStep-Balabolka-21c8949\obj\x86\Debug\Balabolka1.exe
+C:\Users\RuStep\Downloads\RuStep-Balabolka-21c8949\RuStep-Balabolka-21c8949\obj\x86\Debug\Balabolka1.pdb
+C:\Users\RuStep\Downloads\RuStep-Balabolka-21c8949\RuStep-Balabolka-21c8949\bin\Debug\Balabolka1.exe
+C:\Users\RuStep\Downloads\RuStep-Balabolka-21c8949\RuStep-Balabolka-21c8949\bin\Debug\Balabolka1.pdb
+C:\Users\RuStep\Downloads\RuStep-Balabolka-21c8949\RuStep-Balabolka-21c8949\bin\Debug\ApiCore.dll
+C:\Users\RuStep\Downloads\RuStep-Balabolka-21c8949\RuStep-Balabolka-21c8949\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\RuStep\Downloads\RuStep-Balabolka-21c8949\RuStep-Balabolka-21c8949\obj\x86\Debug\Balabolka.VKButton.resources
+C:\Users\RuStep\Downloads\RuStep-Balabolka-21c8949\RuStep-Balabolka-21c8949\obj\x86\Debug\Balabolka.Form1.resources
+C:\Users\RuStep\Downloads\RuStep-Balabolka-21c8949\RuStep-Balabolka-21c8949\obj\x86\Debug\Balabolka.Properties.Resources.resources
+C:\Users\RuStep\Downloads\RuStep-Balabolka-21c8949\RuStep-Balabolka-21c8949\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\RuStep\Downloads\RuStep-Balabolka-21c8949\RuStep-Balabolka-21c8949\obj\x86\Debug\GenerateResource.write.1.tlog
