@@ -35,9 +35,11 @@
             this.tStrip1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.button1 = new System.Windows.Forms.Button();
             this.listF = new System.Windows.Forms.ListBox();
-            this.listH = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.listH = new System.Windows.Forms.ListView();
+            this.col1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.col2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,9 +63,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tStrip1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 258);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 255);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(551, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(550, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -90,18 +92,10 @@
             this.listF.Size = new System.Drawing.Size(137, 238);
             this.listF.TabIndex = 4;
             // 
-            // listH
-            // 
-            this.listH.FormattingEnabled = true;
-            this.listH.Location = new System.Drawing.Point(159, 26);
-            this.listH.Name = "listH";
-            this.listH.Size = new System.Drawing.Size(378, 199);
-            this.listH.TabIndex = 5;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(156, 10);
+            this.label1.Location = new System.Drawing.Point(153, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 6;
@@ -111,11 +105,31 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // listH
+            // 
+            this.listH.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.col1,
+            this.col2});
+            this.listH.Location = new System.Drawing.Point(156, 26);
+            this.listH.Name = "listH";
+            this.listH.Size = new System.Drawing.Size(378, 198);
+            this.listH.TabIndex = 7;
+            this.listH.UseCompatibleStateImageBehavior = false;
+            this.listH.View = System.Windows.Forms.View.Tile;
+            // 
+            // col1
+            // 
+            this.col1.Width = 10;
+            // 
+            // col2
+            // 
+            this.col2.Width = 100;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 280);
+            this.ClientSize = new System.Drawing.Size(550, 277);
             this.Controls.Add(this.listH);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -123,6 +137,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.listId);
             this.Controls.Add(this.listF);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -141,9 +156,10 @@
         private System.Windows.Forms.ToolStripStatusLabel tStrip1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox listF;
-        private System.Windows.Forms.ListBox listH;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ListView listH;
+        private System.Windows.Forms.ColumnHeader col1;
+        private System.Windows.Forms.ColumnHeader col2;
     }
 }
-

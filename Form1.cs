@@ -15,19 +15,18 @@ namespace Balabolka
 {
     public partial class Form1 : Form
     {
-        private bool isLoggedIn = false;
+        private bool _isLoggedIn = false;
 
-        private SessionInfo sessionInfo;
-        private ApiManager manager;
-        private MessagesFactory messagesFactory;
-        private FriendsFactory friendsFactory;
-        private List<Friend> friendsList;
-        private List<ApiCore.Messages.Message> messagesList;
-        public string mid;
-        private int uid;
-        private int my_id;
-        private string fname;
-        private string lname;
+        private SessionInfo _sessionInfo;
+        private ApiManager _manager;
+        private MessagesFactory _messagesFactory;
+        private FriendsFactory _friendsFactory;
+        private List<Friend> _friendsList;
+        private List<ApiCore.Messages.Message> _messagesList;
+        public string Mid;
+        private int _myId;
+        private string _fname;
+        private string _lname;
 
         public Form1()
         {
@@ -42,26 +41,26 @@ namespace Balabolka
 
         private void Reauth()
         {
-            if (isLoggedIn != true)
+            if (_isLoggedIn != true)
             {
                 SessionManager sm = new SessionManager(2774221, Convert.ToInt32(ApiPerms.Audio | ApiPerms.ExtendedMessages | ApiPerms.ExtendedWall | ApiPerms.Friends | ApiPerms.Offers | ApiPerms.Photos | ApiPerms.Questions | ApiPerms.SendNotify | ApiPerms.SidebarLink | ApiPerms.UserNotes | ApiPerms.UserStatus | ApiPerms.Video | ApiPerms.WallPublisher | ApiPerms.Wiki));
                 //sm.Log += new SessionManagerLogHandler(sm_Log);
-                sessionInfo = sm.GetSession();
-                my_id = int.Parse(sessionInfo.MemberId);
+                _sessionInfo = sm.GetSession();
+                _myId = int.Parse(_sessionInfo.MemberId);
 
-                if (sessionInfo != null)
+                if (_sessionInfo != null)
                 {
-                    isLoggedIn = true;
+                    _isLoggedIn = true;
                 }
                 Reauth();
             }
 
-            if (isLoggedIn)
+            if (_isLoggedIn)
             {
-                manager = new ApiManager(sessionInfo);
+                _manager = new ApiManager(_sessionInfo);
                 //manager.Log += new ApiManagerLogHandler(manager_Log);
                 //manager.DebugMode = true;
-                manager.Timeout = 10000;
+                _manager.Timeout = 10000;
                 tStrip1.Text = "Онлайн";
                 GetFriends();
             }
@@ -69,17 +68,17 @@ namespace Balabolka
 
         private void Send(int id, string message)
         {
-            messagesFactory = new MessagesFactory(manager);
-            messagesFactory.Send(id, message, null, SendMessageType.FromChat);
+            _messagesFactory = new MessagesFactory(_manager);
+            _messagesFactory.Send(id, message, null, SendMessageType.FromChat);
         }
 
         private void GetFriends()
         {
-            friendsFactory = new FriendsFactory(manager);
+            _friendsFactory = new FriendsFactory(_manager);
             string[] fields = { "uid", "first_name", "last_name" };
-            friendsList = friendsFactory.Get("nom", null, 0, null, fields);
+            _friendsList = _friendsFactory.Get("nom", null, 0, null, fields);
 
-            foreach (Friend a in friendsList)
+            foreach (Friend a in _friendsList)
             {
                 listF.Items.Add(String.Concat(a.Id));
                 listId.Items.Add(String.Concat(a.FirstName + " " + a.LastName));
@@ -87,37 +86,55 @@ namespace Balabolka
         }
         private void GetName()
         {
-            manager.Method("getProfiles");
-            manager.Params("uids", mid);
-            manager.Params("fields", "first_name, last_name");
+            _manager.Method("getProfiles");
+            _manager.Params("uids", Mid);
+            _manager.Params("fields", "first_name, last_name");
 
-            XmlNode result = manager.Execute().GetResponseXml().FirstChild;
+            XmlNode result = _manager.Execute().GetResponseXml().FirstChild;
             XmlUtils.UseNode(result);
-            fname = XmlUtils.String("first_name");
-            lname = XmlUtils.String("last_name");
-            label1.Text = "Ваш собеседник - " + fname + " " + lname;
+            _fname = XmlUtils.String("first_name");
+            _lname = XmlUtils.String("last_name");
+            label1.Text = "Ваш собеседник - " + _fname + " " + _lname;
         }
 
         private void GetHistory()
         {
-            messagesFactory = new MessagesFactory(manager);
-            messagesList = messagesFactory.GetHistory(Convert.ToInt32(mid), null, 50);
+            _messagesFactory = new MessagesFactory(_manager);
+            _messagesList = _messagesFactory.GetHistory(Convert.ToInt32(Mid), null, 50);
 
-            if (messagesList != null)
+            if (_messagesList != null)
             {
-                foreach (ApiCore.Messages.Message a in messagesList)
+                foreach (ApiCore.Messages.Message a in _messagesList)
                 {
                     if (a.Body != null)
                     {
-                        if (a.UserId == Convert.ToInt32(mid))
+                        if (a.UserId == Convert.ToInt32(Mid))
                         {
-                            listH.Items.Add(String.Concat(fname + ":"));
+                            //listH.Items.Add(String.Concat(_fname + ":"));
+                            col1.ListView.Items.Add(String.Concat(_fname + ":"));
                         }
                         else
                         {
-                            listH.Items.Add("Я:");
+                            col1.ListView.Items.Add("Я:");
+                            //listH.Items.Add("Я:");
                         }
-                        listH.Items.Add(String.Concat("    " + a.Body));
+                        //listH.Items.Add(String.Concat("    " + a.Body));
+                        //listH.Items.Add(a.Body);
+                        col2.ListView.Items.Add(a.Body);
+                    }
+                }
+
+                for (int i = 0; i < listH.Items.Count; i++)
+                {
+                    // 0 - это автор
+                    // 1 - это сообщение
+                    if (i == 0 || i % 2 == 0)
+                    {
+                        listH.Items[i].ForeColor = Color.Green;
+                    }
+                    else
+                    {
+                        listH.Items[i].ForeColor = Color.Black;
                     }
                 }
             }
@@ -131,7 +148,7 @@ namespace Balabolka
         private void listF_SelectedIndexChanged(object sender, EventArgs e)
         {
             listF.SelectedIndex = listId.SelectedIndex;
-            mid = listF.SelectedItem.ToString();
+            Mid = listF.SelectedItem.ToString();
             listH.Items.Clear();
             GetName();
             GetHistory();
@@ -139,7 +156,7 @@ namespace Balabolka
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Send(Convert.ToInt32(mid), textBox1.Text);
+            Send(Convert.ToInt32(Mid), textBox1.Text);
             textBox1.Text = "";
         }
 
