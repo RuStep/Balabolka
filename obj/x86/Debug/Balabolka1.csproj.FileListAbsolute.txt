@@ -1,0 +1,11 @@
+E:\Балаболка\Balabolka1\Balabolka1\bin\Debug\Balabolka1.exe
+E:\Балаболка\Balabolka1\Balabolka1\bin\Debug\Balabolka1.pdb
+E:\Балаболка\Balabolka1\Balabolka1\bin\Debug\ApiCore.dll
+E:\Балаболка\Balabolka1\Balabolka1\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Балаболка\Balabolka1\Balabolka1\obj\x86\Debug\Balabolka.Form1.resources
+E:\Балаболка\Balabolka1\Balabolka1\obj\x86\Debug\Balabolka.Properties.Resources.resources
+E:\Балаболка\Balabolka1\Balabolka1\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Балаболка\Balabolka1\Balabolka1\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Балаболка\Balabolka1\Balabolka1\obj\x86\Debug\Balabolka1.exe
+E:\Балаболка\Balabolka1\Balabolka1\obj\x86\Debug\Balabolka1.pdb
+E:\Балаболка\Balabolka1\Balabolka1\bin\Debug\Balabolka1.exe.config
