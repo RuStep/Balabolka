@@ -1,4 +1,4 @@
-VKype IM Client
+Kontalka
 ===============
 
 ### Описание:
