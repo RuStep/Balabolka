@@ -10,32 +10,39 @@ using System.Xml;
 using ApiCore;
 using ApiCore.Friends;
 using ApiCore.Messages;
-//test
+using ApiCore.Status;
+
 
 namespace Balabolka
 {
     public partial class Form1 : Form
     {
-        private bool _isLoggedIn = false;
+        private bool _isLoggedIn;
+        private bool _online;
 
         private SessionInfo _sessionInfo;
         private ApiManager _manager;
         private MessagesFactory _messagesFactory;
         private FriendsFactory _friendsFactory;
+        private StatusFactory _statusFactory;
         private List<Friend> _friendsList;
         private List<ApiCore.Messages.Message> _messagesList;
-        public string Mid;
-        private int _myId;
+
         private string _fname;
         private string _lname;
         private string _nname;
         private string _avaurl;
-        private string _faculty_name;
-        private string _university_name;
+        private string _facultyName;
+        private string _universityName;
         private string _bdate;
-        private bool _online;
+        private string _myFirstName;
+        private string _myLastName;
+        private string _myName;
+        private string _myAvatarUrl;
 
+        private int _myId;
 
+        public string Mid;
 
         public Form1()
         {
@@ -72,6 +79,9 @@ namespace Balabolka
                 _manager.Timeout = 10000;
                 tStrip1.Text = "Онлайн";
                 GetFriends();
+                GetStatus();
+                GetMyName();
+
             }
         }
 
@@ -93,20 +103,38 @@ namespace Balabolka
                 listId.Items.Add(String.Concat(a.FirstName + " " + a.LastName));
             }
         }
-        private void GetFriend()
+
+        private void GetMyName()
+        {
+            _manager.Method("getProfiles");
+            _manager.Params("uids", _myId);
+            _manager.Params("fields", "first_name, last_name, photo_medium_rec");
+
+            XmlNode result = _manager.Execute().GetResponseXml().FirstChild;
+            XmlUtils.UseNode(result);
+            _myFirstName = XmlUtils.String("first_name");
+            _myLastName = XmlUtils.String("last_name");
+            _myName = String.Concat(_myFirstName, " ", _myLastName);
+            _myAvatarUrl = XmlUtils.String("photo_medium_rec");
+
+            pictureBox2.ImageLocation = _myAvatarUrl;
+            myNameLabel.Text = _myName;
+        }
+
+        private void GetProfiles()
         {
             _manager.Method("getProfiles");
             _manager.Params("uids", Mid);
-            _manager.Params("fields", "first_name, last_name, photo_medium, nickname, education, bdate, online");
+            _manager.Params("fields", "first_name, last_name, photo_medium_rec, nickname, education, bdate, online");
 
             XmlNode result = _manager.Execute().GetResponseXml().FirstChild;
             XmlUtils.UseNode(result);
             _fname = XmlUtils.String("first_name");
             _lname = XmlUtils.String("last_name");
-            _avaurl = XmlUtils.String("photo_medium");
+            _avaurl = XmlUtils.String("photo_medium_rec");
             _nname = XmlUtils.String("nickname");
-            _university_name = XmlUtils.String("university_name");
-            _faculty_name = XmlUtils.String("faculty_name");
+            _universityName = XmlUtils.String("university_name");
+            _facultyName = XmlUtils.String("faculty_name");
             _bdate = XmlUtils.String("bdate");
             _online = XmlUtils.Bool("online");
 
@@ -114,9 +142,9 @@ namespace Balabolka
             label1.Text = _fname + " " + _nname + " " + _lname;
             label3.Text = _bdate;
 
-            if (_university_name == null)
+            if (_universityName == null)
             {
-                label2.Text = _university_name + ", " + _faculty_name;
+                label2.Text = _universityName + ", " + _facultyName;
             }
             else
             {
@@ -124,7 +152,7 @@ namespace Balabolka
                 label3.Text = "";
             }
 
-            if (_online == true)
+            if (_online)
             {
                 label4.Text = "В сети";
                 label4.ForeColor = Color.DarkGreen;
@@ -179,17 +207,30 @@ namespace Balabolka
             }
             else
             {
+                
                 listH.Items.Clear();
             }
         }
 
+        private void GetStatus()
+        {
+            try
+            {
+                _statusFactory = new StatusFactory(_manager);
+                myStatusTextBox.Text = _statusFactory.Get(_myId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
 
         private void listF_SelectedIndexChanged(object sender, EventArgs e)
         {
             listF.SelectedIndex = listId.SelectedIndex;
             Mid = listF.SelectedItem.ToString();
             listH.Items.Clear();
-            GetFriend();
+            GetProfiles();
             GetHistory();
         }
 
@@ -199,13 +240,14 @@ namespace Balabolka
             {
                 Send(Convert.ToInt32(Mid), textBox1.Text);
                 textBox1.Text = "";
+                GetHistory();
             }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             GetHistory();
-            GetFriend();
+            GetProfiles();
             GetFriends();
         }
 
