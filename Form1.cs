@@ -26,6 +26,7 @@ namespace Balabolka
         private FriendsFactory _friendsFactory;
         private StatusFactory _statusFactory;
         private List<Friend> _friendsList;
+        private List<Friend> _onlineFriendsList; 
         private List<ApiCore.Messages.Message> _messagesList;
 
         private string _fname;
@@ -97,12 +98,24 @@ namespace Balabolka
             string[] fields = { "uid", "first_name", "last_name" };
             _friendsList = _friendsFactory.Get("nom", null, 0, null, fields);
 
+
             foreach (Friend a in _friendsList)
             {
                 listF.Items.Add(String.Concat(a.Id));
                 listId.Items.Add(String.Concat(a.FirstName + " " + a.LastName));
             }
         }
+
+        //private void GetOnlineFriends()
+        //{
+        //    _friendsFactory = new FriendsFactory(_manager);
+        //    _onlineFriendsList = _friendsFactory.GetOnline();
+
+        //    foreach (Friend a in _onlineFriendsList)
+        //    {
+        //        Console.WriteLine(a.Id); // Только один ID выдает. Подробности узнавай у меня.
+        //    }
+        //}
 
         private void GetMyName()
         {
@@ -249,6 +262,19 @@ namespace Balabolka
             GetHistory();
             GetProfiles();
             GetFriends();
+        }
+
+        private void simpleButton1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && e.KeyCode == Keys.Control)
+            {
+                if (textBox1.Text != null && textBox1.Text != " ")
+                {
+                    Send(Convert.ToInt32(Mid), textBox1.Text);
+                    textBox1.Text = "";
+                    GetHistory();
+                }
+            }
         }
 
     }

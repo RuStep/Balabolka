@@ -37,6 +37,11 @@
     <Reference Include="ApiCore">
       <HintPath>.\ApiCore.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Data.v11.1, Version=11.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"><HintPath>.\DevExpress.Data.v11.1.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Printing.v11.1.Core, Version=11.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"><HintPath>.\DevExpress.Printing.v11.1.Core.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Utils.v11.1, Version=11.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"><HintPath>.\DevExpress.Utils.v11.1.dll</HintPath></Reference>
+    <Reference Include="DevExpress.XtraBars.v11.1, Version=11.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL"><HintPath>.\DevExpress.XtraBars.v11.1.dll</HintPath></Reference>
+    <Reference Include="DevExpress.XtraEditors.v11.1, Version=11.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL"><HintPath>.\DevExpress.XtraEditors.v11.1.dll</HintPath></Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
