@@ -90,12 +90,20 @@ namespace Kontalka
             }
         }
 
+        /// <summary>
+        /// Отправляет сообщение указанному пользователю
+        /// </summary>
+        /// <param name="id">ID пользователя</param>
+        /// <param name="message">Текст сообщения</param>
         private void Send(int id, string message)
         {
             _messagesFactory = new MessagesFactory(_manager);
             _messagesFactory.Send(id, message, null, SendMessageType.FromChat);
         }
 
+        /// <summary>
+        /// Получает список друзей
+        /// </summary>
         private void GetFriends()
         {
             _friendsFactory = new FriendsFactory(_manager);
@@ -110,6 +118,9 @@ namespace Kontalka
             }
         }
 
+        /// <summary>
+        /// Получает список друзей находящихся в онлайне
+        /// </summary>
         private void GetOnlineFriends()
         {
             _friendsFactory = new FriendsFactory(_manager);
@@ -121,6 +132,9 @@ namespace Kontalka
             }
         }
 
+        /// <summary>
+        /// Получает данные текущего пользователя
+        /// </summary>
         private void GetMyName()
         {
             _manager.Method("getProfiles");
@@ -138,6 +152,9 @@ namespace Kontalka
             myNameLabel.Text = _myName;
         }
 
+        /// <summary>
+        /// Получает данные выбранного пользователя из списка друзей
+        /// </summary>
         private void GetProfiles()
         {
             _manager.Method("getProfiles");
@@ -181,6 +198,9 @@ namespace Kontalka
             }
         }
 
+        /// <summary>
+        /// Получает историю сообщений
+        /// </summary>
         private void GetHistory()
         {
             _messagesFactory = new MessagesFactory(_manager);
@@ -194,24 +214,20 @@ namespace Kontalka
                     {
                         if (a.UserId == Convert.ToInt32(Mid))
                         {
-                            //listH.Items.Add(String.Concat(_fname + ":"));
                             col1.ListView.Items.Add(String.Concat(_fname + ":"));
                         }
                         else
                         {
                             col1.ListView.Items.Add("Я:");
-                            //listH.Items.Add("Я:");
                         }
-                        //listH.Items.Add(String.Concat("    " + a.Body));
-                        //listH.Items.Add(a.Body);
                         col2.ListView.Items.Add(a.Body);
                     }
                 }
 
                 for (int i = 0; i < listH.Items.Count; i++)
                 {
-                    // 0 - это автор
-                    // 1 - это сообщение
+                    // 0,2,4 - это автор (То бишь четные)
+                    // 1,3,5 - это сообщение (То бишь нечётные)
                     if (i == 0 || i % 2 == 0)
                     {
                         listH.Items[i].ForeColor = Color.Green;
@@ -229,6 +245,9 @@ namespace Kontalka
             }
         }
 
+        /// <summary>
+        /// Получает статус пользователя
+        /// </summary>
         private void GetStatus()
         {
             try
@@ -290,7 +309,7 @@ namespace Kontalka
 
             if (myStatusTextBox.Text == "")
             {
-                myStatusTextBox.Text = "Поделитеь здесь своими эмоциями";
+                myStatusTextBox.Text = "Поделитесь своими эмоциями";
             }
         }
 
