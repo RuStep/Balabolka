@@ -1,4 +1,4 @@
-﻿namespace Balabolka
+﻿namespace Kontalka
 {
     partial class Main
     {
@@ -310,26 +310,26 @@
             // 
             this.friendsTab.Controls.Add(this.listF);
             this.friendsTab.Controls.Add(this.listId);
-            this.friendsTab.Image = global::Balabolka.Properties.Resources.friends;
+            this.friendsTab.Image = global::Kontalka.Properties.Resources.friends;
             this.friendsTab.Name = "friendsTab";
             this.friendsTab.Size = new System.Drawing.Size(273, 291);
             this.friendsTab.Text = "Друзья";
             // 
             // newsTab
             // 
-            this.newsTab.Image = global::Balabolka.Properties.Resources.news;
+            this.newsTab.Image = global::Kontalka.Properties.Resources.news;
             this.newsTab.Name = "newsTab";
             this.newsTab.Size = new System.Drawing.Size(273, 291);
             // 
             // musicTab
             // 
-            this.musicTab.Image = global::Balabolka.Properties.Resources.music;
+            this.musicTab.Image = global::Kontalka.Properties.Resources.music;
             this.musicTab.Name = "musicTab";
             this.musicTab.Size = new System.Drawing.Size(273, 291);
             // 
             // settingsTab
             // 
-            this.settingsTab.Image = global::Balabolka.Properties.Resources.settings;
+            this.settingsTab.Image = global::Kontalka.Properties.Resources.settings;
             this.settingsTab.Name = "settingsTab";
             this.settingsTab.Size = new System.Drawing.Size(273, 291);
             // 
@@ -348,7 +348,7 @@
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Main";
-            this.Text = "Main";
+            this.Text = "Конталка";
             this.Load += new System.EventHandler(this.Main_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

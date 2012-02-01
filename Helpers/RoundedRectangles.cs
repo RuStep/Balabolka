@@ -2,11 +2,11 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace Balabolka
+namespace Kontalka.Helpers
 {
     public abstract class RoundedRectangle
     {
-        [FlagsAttribute]
+        [Flags]
         public enum RectangleCorners
         {
             None = 0,

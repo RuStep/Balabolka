@@ -11,9 +11,10 @@ using ApiCore;
 using ApiCore.Friends;
 using ApiCore.Messages;
 using ApiCore.Status;
+using Kontalka.Helpers;
 
 
-namespace Balabolka
+namespace Kontalka
 {
     public partial class Main : Form
     {
@@ -335,7 +336,7 @@ namespace Balabolka
         //        newsTab.Text = "Новости";
         //        musicTab.Text = "";
         //        settingsTab.Text = "";
-           
+
         //    }
         //    else if (xtraTabControl1.SelectedTabPage == musicTab)
         //    {
