@@ -56,6 +56,8 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.friendsTab = new DevExpress.XtraTab.XtraTabPage();
+            this.heartTab = new DevExpress.XtraTab.XtraTabPage();
+            this.listFavorites = new System.Windows.Forms.ListBox();
             this.newsTab = new DevExpress.XtraTab.XtraTabPage();
             this.musicTab = new DevExpress.XtraTab.XtraTabPage();
             this.settingsTab = new DevExpress.XtraTab.XtraTabPage();
@@ -70,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.friendsTab.SuspendLayout();
+            this.heartTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             this.SuspendLayout();
@@ -349,9 +352,11 @@
             this.xtraTabControl1.TabIndex = 18;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.friendsTab,
+            this.heartTab,
             this.newsTab,
             this.musicTab,
             this.settingsTab});
+            this.xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl1_SelectedPageChanged);
             // 
             // friendsTab
             // 
@@ -361,6 +366,23 @@
             this.friendsTab.Name = "friendsTab";
             this.friendsTab.Size = new System.Drawing.Size(273, 291);
             this.friendsTab.Text = "Друзья";
+            // 
+            // heartTab
+            // 
+            this.heartTab.Controls.Add(this.listFavorites);
+            this.heartTab.Image = global::Kontalka.Properties.Resources.heart;
+            this.heartTab.Name = "heartTab";
+            this.heartTab.Size = new System.Drawing.Size(273, 291);
+            // 
+            // listFavorites
+            // 
+            this.listFavorites.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listFavorites.FormattingEnabled = true;
+            this.listFavorites.Location = new System.Drawing.Point(0, 0);
+            this.listFavorites.Name = "listFavorites";
+            this.listFavorites.Size = new System.Drawing.Size(273, 291);
+            this.listFavorites.TabIndex = 0;
+            this.listFavorites.SelectedIndexChanged += new System.EventHandler(this.listFavorites_SelectedIndexChanged);
             // 
             // newsTab
             // 
@@ -423,6 +445,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.friendsTab.ResumeLayout(false);
+            this.heartTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -463,5 +486,7 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.SimpleButton addUserToFaveButton;
         private DevExpress.XtraEditors.SimpleButton usersProfileButton;
+        private DevExpress.XtraTab.XtraTabPage heartTab;
+        private System.Windows.Forms.ListBox listFavorites;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -29,6 +30,7 @@ namespace Kontalka
         private List<Friend> _friendsList;
         private List<Friend> _onlineFriendsList;
         private List<ApiCore.Messages.Message> _messagesList;
+        private List<int> _favoritesList; 
 
         private string _fname;
         private string _lname;
@@ -361,9 +363,7 @@ namespace Kontalka
             {
                 if (textBox1.Text != null && textBox1.Text != " ")
                 {
-                    Send(Convert.ToInt32(Mid), textBox1.Text);
-                    textBox1.Text = "";
-                    GetHistory();
+                    simpleButton1.PerformClick();
                 }
             }
             else if (e.Control && e.KeyCode == Keys.Enter)
@@ -374,46 +374,78 @@ namespace Kontalka
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(String.Concat("http://vkontakte.ru/id", Mid));
+            System.Diagnostics.Process.Start(String.Concat("http://vk.com/id", Mid));
         }
 
         private void addUserToFaveButton_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.favoritesIDs = new StringCollection();
+            Properties.Settings.Default.favoritesIDs.Add(Mid);
             Console.WriteLine("В закладки!");
+
+            for (int i = 0; i < Properties.Settings.Default.favoritesIDs.Count; i++ )
+            {
+                listFavorites.Items.Add(Properties.Settings.Default.favoritesIDs[i]);
+            }
+            Properties.Settings.Default.Save();
         }
 
         // Слишком медленно работает :(
-        //private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
-        //{
-        //    if (xtraTabControl1.SelectedTabPage == friendsTab)
-        //    {
-        //        newsTab.Text = "";
-        //        musicTab.Text = "";
-        //        settingsTab.Text = "";
-        //        friendsTab.Text = "Друзья";
-        //    }
-        //    else if (xtraTabControl1.SelectedTabPage == newsTab)
-        //    {
-        //        friendsTab.Text = "";
-        //        newsTab.Text = "Новости";
-        //        musicTab.Text = "";
-        //        settingsTab.Text = "";
+        private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            if (xtraTabControl1.SelectedTabPage == friendsTab)
+            {
+                heartTab.Text = "";
+                newsTab.Text = "";
+                musicTab.Text = "";
+                settingsTab.Text = "";
+                friendsTab.Text = "Друзья";
+            }
+            else if (xtraTabControl1.SelectedTabPage == heartTab)
+            {
+                friendsTab.Text = "";
+                heartTab.Text = "Избранное";
+                newsTab.Text = "";
+                musicTab.Text = "";
+                settingsTab.Text = "";
+            }
+            else if (xtraTabControl1.SelectedTabPage == newsTab)
+            {
+                friendsTab.Text = "";
+                heartTab.Text = "";
+                newsTab.Text = "Новости";
+                musicTab.Text = "";
+                settingsTab.Text = "";
 
-        //    }
-        //    else if (xtraTabControl1.SelectedTabPage == musicTab)
-        //    {
-        //        friendsTab.Text = "";
-        //        newsTab.Text = "";
-        //        musicTab.Text = "Музыка";
-        //        settingsTab.Text = "";
-        //    }
-        //    else if (xtraTabControl1.SelectedTabPage == settingsTab)
-        //    {
-        //        friendsTab.Text = "";
-        //        newsTab.Text = "";
-        //        musicTab.Text = "";
-        //        settingsTab.Text = "Настройки";
-        //    }
-        //}
+            }
+            else if (xtraTabControl1.SelectedTabPage == musicTab)
+            {
+                friendsTab.Text = "";
+                heartTab.Text = "";
+                newsTab.Text = "";
+                musicTab.Text = "Музыка";
+                settingsTab.Text = "";
+            }
+            else if (xtraTabControl1.SelectedTabPage == settingsTab)
+            {
+                friendsTab.Text = "";
+                heartTab.Text = "";
+                newsTab.Text = "";
+                musicTab.Text = "";
+                settingsTab.Text = "Настройки";
+            }
+        }
+
+        private void listFavorites_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Mid = listFavorites.SelectedItem.ToString();
+            listH.Items.Clear();
+            textBox1.Enabled = true;
+            addUserToFaveButton.Enabled = true;
+            usersProfileButton.Enabled = true;
+
+            GetProfiles();
+            GetHistory();
+        }
     }
 }
