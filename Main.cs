@@ -284,6 +284,8 @@ namespace Kontalka
             Mid = listF.SelectedItem.ToString();
             listH.Items.Clear();
             textBox1.Enabled = true;
+            addUserToFaveButton.Enabled = true;
+            usersProfileButton.Enabled = true;
 
             GetProfiles();
             GetHistory();
@@ -368,6 +370,16 @@ namespace Kontalka
             {
                 
             }
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(String.Concat("http://vkontakte.ru/id", Mid));
+        }
+
+        private void addUserToFaveButton_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("В закладки!");
         }
 
         // Слишком медленно работает :(

@@ -50,6 +50,8 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.status_send = new System.Windows.Forms.Button();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.usersProfileButton = new DevExpress.XtraEditors.SimpleButton();
+            this.addUserToFaveButton = new DevExpress.XtraEditors.SimpleButton();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
@@ -57,6 +59,7 @@
             this.newsTab = new DevExpress.XtraTab.XtraTabPage();
             this.musicTab = new DevExpress.XtraTab.XtraTabPage();
             this.settingsTab = new DevExpress.XtraTab.XtraTabPage();
+            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -67,6 +70,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.friendsTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
+            this.splitContainerControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listId
@@ -84,11 +89,12 @@
             // 
             this.textBox1.AcceptsReturn = true;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(297, 400);
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(330, 50);
+            this.textBox1.Size = new System.Drawing.Size(330, 52);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
@@ -99,7 +105,7 @@
             this.tStrip1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 458);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(691, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(689, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -139,10 +145,11 @@
             this.listH.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.col1,
             this.col2});
+            this.listH.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listH.GridLines = true;
-            this.listH.Location = new System.Drawing.Point(297, 159);
+            this.listH.Location = new System.Drawing.Point(0, 0);
             this.listH.Name = "listH";
-            this.listH.Size = new System.Drawing.Size(380, 241);
+            this.listH.Size = new System.Drawing.Size(380, 234);
             this.listH.TabIndex = 7;
             this.listH.UseCompatibleStateImageBehavior = false;
             this.listH.View = System.Windows.Forms.View.Tile;
@@ -166,21 +173,19 @@
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(91, 28);
+            this.label2.Location = new System.Drawing.Point(92, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 14);
+            this.label2.Size = new System.Drawing.Size(236, 30);
             this.label2.TabIndex = 9;
             this.label2.Text = "label2";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(91, 42);
+            this.label3.Location = new System.Drawing.Point(92, 58);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 14);
+            this.label3.Size = new System.Drawing.Size(236, 33);
             this.label3.TabIndex = 10;
             this.label3.Text = "label3";
             // 
@@ -188,7 +193,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(2, 88);
+            this.label4.Location = new System.Drawing.Point(5, 88);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 14);
             this.label4.TabIndex = 11;
@@ -215,7 +220,7 @@
             // 
             // myStatusTextBox
             // 
-            this.myStatusTextBox.Location = new System.Drawing.Point(91, 28);
+            this.myStatusTextBox.Location = new System.Drawing.Point(95, 28);
             this.myStatusTextBox.Multiline = true;
             this.myStatusTextBox.Name = "myStatusTextBox";
             this.myStatusTextBox.ReadOnly = true;
@@ -230,10 +235,11 @@
             this.simpleButton1.Appearance.ForeColor = System.Drawing.SystemColors.Highlight;
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Appearance.Options.UseForeColor = true;
+            this.simpleButton1.Dock = System.Windows.Forms.DockStyle.Right;
             this.simpleButton1.Enabled = false;
-            this.simpleButton1.Location = new System.Drawing.Point(627, 400);
+            this.simpleButton1.Location = new System.Drawing.Point(330, 0);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(50, 50);
+            this.simpleButton1.Size = new System.Drawing.Size(50, 52);
             this.simpleButton1.TabIndex = 15;
             this.simpleButton1.Text = "]";
             this.simpleButton1.Click += new System.EventHandler(this.button1_Click);
@@ -255,7 +261,7 @@
             this.status_send.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.status_send.Font = new System.Drawing.Font("Webdings", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.status_send.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.status_send.Location = new System.Drawing.Point(237, 52);
+            this.status_send.Location = new System.Drawing.Point(241, 52);
             this.status_send.Name = "status_send";
             this.status_send.Size = new System.Drawing.Size(33, 33);
             this.status_send.TabIndex = 18;
@@ -265,6 +271,8 @@
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.usersProfileButton);
+            this.panelControl2.Controls.Add(this.addUserToFaveButton);
             this.panelControl2.Controls.Add(this.pictureBox1);
             this.panelControl2.Controls.Add(this.label1);
             this.panelControl2.Controls.Add(this.label2);
@@ -274,6 +282,44 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(380, 117);
             this.panelControl2.TabIndex = 17;
+            // 
+            // usersProfileButton
+            // 
+            this.usersProfileButton.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.usersProfileButton.Appearance.Font = new System.Drawing.Font("Webdings", 24F);
+            this.usersProfileButton.Appearance.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.usersProfileButton.Appearance.Options.UseBackColor = true;
+            this.usersProfileButton.Appearance.Options.UseFont = true;
+            this.usersProfileButton.Appearance.Options.UseForeColor = true;
+            this.usersProfileButton.Enabled = false;
+            this.usersProfileButton.Location = new System.Drawing.Point(334, 5);
+            this.usersProfileButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.usersProfileButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.usersProfileButton.Name = "usersProfileButton";
+            this.usersProfileButton.Size = new System.Drawing.Size(41, 42);
+            this.usersProfileButton.TabIndex = 21;
+            this.usersProfileButton.Text = "‚";
+            this.usersProfileButton.ToolTip = "Посмотреть страницу пользователя";
+            this.usersProfileButton.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // addUserToFaveButton
+            // 
+            this.addUserToFaveButton.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.addUserToFaveButton.Appearance.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.addUserToFaveButton.Appearance.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.addUserToFaveButton.Appearance.Options.UseBackColor = true;
+            this.addUserToFaveButton.Appearance.Options.UseFont = true;
+            this.addUserToFaveButton.Appearance.Options.UseForeColor = true;
+            this.addUserToFaveButton.Enabled = false;
+            this.addUserToFaveButton.Location = new System.Drawing.Point(334, 70);
+            this.addUserToFaveButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.addUserToFaveButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.addUserToFaveButton.Name = "addUserToFaveButton";
+            this.addUserToFaveButton.Size = new System.Drawing.Size(41, 42);
+            this.addUserToFaveButton.TabIndex = 20;
+            this.addUserToFaveButton.Text = "♥";
+            this.addUserToFaveButton.ToolTip = "Добавление пользователя в закладки";
+            this.addUserToFaveButton.Click += new System.EventHandler(this.addUserToFaveButton_Click);
             // 
             // textBox2
             // 
@@ -297,7 +343,6 @@
             // 
             this.xtraTabControl1.Location = new System.Drawing.Point(12, 135);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.PageImagePosition = DevExpress.XtraTab.TabPageImagePosition.Center;
             this.xtraTabControl1.PaintStyleName = "Skin";
             this.xtraTabControl1.SelectedTabPage = this.friendsTab;
             this.xtraTabControl1.Size = new System.Drawing.Size(279, 320);
@@ -335,18 +380,31 @@
             this.settingsTab.Name = "settingsTab";
             this.settingsTab.Size = new System.Drawing.Size(273, 291);
             // 
+            // splitContainerControl1
+            // 
+            this.splitContainerControl1.Horizontal = false;
+            this.splitContainerControl1.Location = new System.Drawing.Point(297, 159);
+            this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this.listH);
+            this.splitContainerControl1.Panel1.Text = "Panel1";
+            this.splitContainerControl1.Panel2.Controls.Add(this.textBox1);
+            this.splitContainerControl1.Panel2.Controls.Add(this.simpleButton1);
+            this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Size = new System.Drawing.Size(380, 291);
+            this.splitContainerControl1.SplitterPosition = 234;
+            this.splitContainerControl1.TabIndex = 19;
+            this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(691, 480);
+            this.ClientSize = new System.Drawing.Size(689, 480);
+            this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.simpleButton1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.listH);
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Main";
@@ -365,6 +423,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.friendsTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
+            this.splitContainerControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,5 +460,8 @@
         private DevExpress.XtraTab.XtraTabPage newsTab;
         private DevExpress.XtraTab.XtraTabPage musicTab;
         private DevExpress.XtraTab.XtraTabPage settingsTab;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private DevExpress.XtraEditors.SimpleButton addUserToFaveButton;
+        private DevExpress.XtraEditors.SimpleButton usersProfileButton;
     }
 }
