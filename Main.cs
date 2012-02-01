@@ -157,44 +157,53 @@ namespace Kontalka
         /// </summary>
         private void GetProfiles()
         {
-            _manager.Method("getProfiles");
-            _manager.Params("uids", Mid);
-            _manager.Params("fields", "first_name, last_name, photo_medium_rec, nickname, education, bdate, online");
-
-            XmlNode result = _manager.Execute().GetResponseXml().FirstChild;
-            XmlUtils.UseNode(result);
-            _fname = XmlUtils.String("first_name");
-            _lname = XmlUtils.String("last_name");
-            _avaurl = XmlUtils.String("photo_medium_rec");
-            _nname = XmlUtils.String("nickname");
-            _universityName = XmlUtils.String("university_name");
-            _facultyName = XmlUtils.String("faculty_name");
-            _bdate = XmlUtils.String("bdate");
-            _online = XmlUtils.Bool("online");
-
-            pictureBox1.ImageLocation = _avaurl;
-            label1.Text = _fname + " " + _lname;
-            label3.Text = _bdate;
-
-            if (_universityName == null)
+            try
             {
-                label2.Text = _bdate;
-                label3.Text = "";
+                _manager.Method("getProfiles");
+                _manager.Params("uids", Mid);
+                _manager.Params("fields", "first_name, last_name, photo_medium_rec, nickname, education, bdate, online");
+
+                XmlNode result = _manager.Execute().GetResponseXml().FirstChild;
+                XmlUtils.UseNode(result);
+                _fname = XmlUtils.String("first_name");
+                _lname = XmlUtils.String("last_name");
+                _avaurl = XmlUtils.String("photo_medium_rec");
+                _nname = XmlUtils.String("nickname");
+                _universityName = XmlUtils.String("university_name");
+                _facultyName = XmlUtils.String("faculty_name");
+                _bdate = XmlUtils.String("bdate");
+                _online = XmlUtils.Bool("online");
+
+                pictureBox1.ImageLocation = _avaurl;
+                label1.Text = _fname + " " + _lname;
+                label3.Text = _bdate;
+
+                if (_universityName == null)
+                {
+                    label2.Text = _bdate;
+                    label3.Text = "";
+                }
+                else
+                {
+                    label2.Text = _universityName + ", " + _facultyName;
+                }
+
+                if (_online)
+                {
+                    label4.Text = "В сети";
+                    label4.ForeColor = Color.DarkGreen;
+                }
+                else
+                {
+                    label4.Text = "Не в сети";
+                    label4.ForeColor = Color.DarkRed;
+                }
+
             }
-            else
-            {
-                label2.Text = _universityName + ", " + _facultyName;
-            }
 
-            if (_online)
+            catch (ApiRequestErrorException ex)
             {
-                label4.Text = "В сети";
-                label4.ForeColor = Color.DarkGreen;
-            }
-            else
-            {
-                label4.Text = "Не в сети";
-                label4.ForeColor = Color.DarkRed;
+                Console.WriteLine(ex);
             }
         }
 
@@ -203,45 +212,52 @@ namespace Kontalka
         /// </summary>
         private void GetHistory()
         {
-            _messagesFactory = new MessagesFactory(_manager);
-            _messagesList = _messagesFactory.GetHistory(Convert.ToInt32(Mid), null, 50);
-
-            if (_messagesList != null)
+            try
             {
-                foreach (ApiCore.Messages.Message a in _messagesList)
+                _messagesFactory = new MessagesFactory(_manager);
+                _messagesList = _messagesFactory.GetHistory(Convert.ToInt32(Mid), null, 50);
+
+                if (_messagesList != null)
                 {
-                    if (a.Body != null)
+                    foreach (ApiCore.Messages.Message a in _messagesList)
                     {
-                        if (a.UserId == Convert.ToInt32(Mid))
+                        if (a.Body != null)
                         {
-                            col1.ListView.Items.Add(String.Concat(_fname + ":"));
+                            if (a.UserId == Convert.ToInt32(Mid))
+                            {
+                                col1.ListView.Items.Add(String.Concat(_fname + ":"));
+                            }
+                            else
+                            {
+                                col1.ListView.Items.Add("Я:");
+                            }
+                            col2.ListView.Items.Add(a.Body);
+                        }
+                    }
+
+                    for (int i = 0; i < listH.Items.Count; i++)
+                    {
+                        // 0,2,4 - это автор (То бишь четные)
+                        // 1,3,5 - это сообщение (То бишь нечётные)
+                        if (i == 0 || i % 2 == 0)
+                        {
+                            listH.Items[i].ForeColor = Color.Green;
                         }
                         else
                         {
-                            col1.ListView.Items.Add("Я:");
+                            listH.Items[i].ForeColor = Color.Black;
                         }
-                        col2.ListView.Items.Add(a.Body);
                     }
                 }
-
-                for (int i = 0; i < listH.Items.Count; i++)
+                else
                 {
-                    // 0,2,4 - это автор (То бишь четные)
-                    // 1,3,5 - это сообщение (То бишь нечётные)
-                    if (i == 0 || i % 2 == 0)
-                    {
-                        listH.Items[i].ForeColor = Color.Green;
-                    }
-                    else
-                    {
-                        listH.Items[i].ForeColor = Color.Black;
-                    }
+
+                    listH.Items.Clear();
                 }
             }
-            else
+            catch (ApiRequestErrorException ex)
             {
-
-                listH.Items.Clear();
+                Console.WriteLine(ex);
             }
         }
 
@@ -267,6 +283,7 @@ namespace Kontalka
             listF.SelectedIndex = listId.SelectedIndex;
             Mid = listF.SelectedItem.ToString();
             listH.Items.Clear();
+            textBox1.Enabled = true;
 
             GetProfiles();
             GetHistory();
@@ -291,14 +308,11 @@ namespace Kontalka
 
         private void simpleButton1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && e.KeyCode == Keys.Control)
+            if (textBox1.Text != null && textBox1.Text != " ")
             {
-                if (textBox1.Text != null && textBox1.Text != " ")
-                {
-                    Send(Convert.ToInt32(Mid), textBox1.Text);
-                    textBox1.Text = "";
-                    GetHistory();
-                }
+                Send(Convert.ToInt32(Mid), textBox1.Text);
+                textBox1.Text = "";
+                GetHistory();
             }
         }
 
@@ -336,6 +350,23 @@ namespace Kontalka
             else
             {
                 simpleButton1.Enabled = false;
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && e.Control == false)
+            {
+                if (textBox1.Text != null && textBox1.Text != " ")
+                {
+                    Send(Convert.ToInt32(Mid), textBox1.Text);
+                    textBox1.Text = "";
+                    GetHistory();
+                }
+            }
+            else if (e.Control && e.KeyCode == Keys.Enter)
+            {
+                
             }
         }
 
