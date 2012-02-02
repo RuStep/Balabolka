@@ -46,9 +46,11 @@ namespace Kontalka
         private string _mystatus;
         private string _newstatus;
 
+
         private int _myId;
 
         public string Mid;
+        public string MName;
 
         public Main()
         {
@@ -59,7 +61,7 @@ namespace Kontalka
         {
             tStrip1.Text = "Оффлайн";
             Reauth();
-            status_send.Visible = false;
+            status_send.Visible = false; // Пашет через раз или не пашет вообще
         }
 
         private void Reauth()
@@ -111,7 +113,6 @@ namespace Kontalka
             _friendsFactory = new FriendsFactory(_manager);
             string[] fields = { "uid", "first_name", "last_name" };
             _friendsList = _friendsFactory.Get("nom", null, 0, null, fields);
-
 
             foreach (Friend a in _friendsList)
             {
@@ -180,7 +181,7 @@ namespace Kontalka
                 label1.Text = _fname + " " + _lname;
                 label3.Text = _bdate;
 
-                if (_universityName == null)
+                if (_universityName == null) // Должно, но не пашет
                 {
                     label2.Text = _bdate;
                     label3.Text = "";
@@ -283,6 +284,7 @@ namespace Kontalka
         private void listF_SelectedIndexChanged(object sender, EventArgs e)
         {
             listF.SelectedIndex = listId.SelectedIndex;
+            MName = listId.SelectedItem.ToString();
             Mid = listF.SelectedItem.ToString();
             listH.Items.Clear();
             textBox1.Enabled = true;
@@ -381,11 +383,17 @@ namespace Kontalka
         {
             Properties.Settings.Default.favoritesIDs = new StringCollection();
             Properties.Settings.Default.favoritesIDs.Add(Mid);
+            Properties.Settings.Default.favoritesNames = new StringCollection();
+            Properties.Settings.Default.favoritesNames.Add(MName);
             Console.WriteLine("В закладки!");
 
-            for (int i = 0; i < Properties.Settings.Default.favoritesIDs.Count; i++ )
+            for (int i = 0; i < Properties.Settings.Default.favoritesIDs.Count; i++)
             {
-                listFavorites.Items.Add(Properties.Settings.Default.favoritesIDs[i]);
+                listFavNames.Items.Add(Properties.Settings.Default.favoritesIDs[i]);
+            }
+            for (int o = 0; o < Properties.Settings.Default.favoritesNames.Count; o++)
+            {
+                listFavId.Items.Add(Properties.Settings.Default.favoritesNames[o]);
             }
             Properties.Settings.Default.Save();
         }
@@ -400,6 +408,7 @@ namespace Kontalka
                 musicTab.Text = "";
                 settingsTab.Text = "";
                 friendsTab.Text = "Друзья";
+                clear_btn.Visible = false;
             }
             else if (xtraTabControl1.SelectedTabPage == heartTab)
             {
@@ -408,6 +417,7 @@ namespace Kontalka
                 newsTab.Text = "";
                 musicTab.Text = "";
                 settingsTab.Text = "";
+                clear_btn.Visible = false;
             }
             else if (xtraTabControl1.SelectedTabPage == newsTab)
             {
@@ -416,7 +426,7 @@ namespace Kontalka
                 newsTab.Text = "Новости";
                 musicTab.Text = "";
                 settingsTab.Text = "";
-
+                clear_btn.Visible = false;
             }
             else if (xtraTabControl1.SelectedTabPage == musicTab)
             {
@@ -425,6 +435,7 @@ namespace Kontalka
                 newsTab.Text = "";
                 musicTab.Text = "Музыка";
                 settingsTab.Text = "";
+                clear_btn.Visible = false;
             }
             else if (xtraTabControl1.SelectedTabPage == settingsTab)
             {
@@ -433,12 +444,14 @@ namespace Kontalka
                 newsTab.Text = "";
                 musicTab.Text = "";
                 settingsTab.Text = "Настройки";
+                clear_btn.Visible = true;
             }
         }
 
         private void listFavorites_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Mid = listFavorites.SelectedItem.ToString();
+            listFavNames.SelectedIndex = listFavId.SelectedIndex;
+            Mid = listFavNames.SelectedItem.ToString();
             listH.Items.Clear();
             textBox1.Enabled = true;
             addUserToFaveButton.Enabled = true;
@@ -446,6 +459,17 @@ namespace Kontalka
 
             GetProfiles();
             GetHistory();
+        }
+
+        private void clear_btn_Click(object sender, EventArgs e)
+        {
+            listFavId.Items.Clear();
+            listFavId.Items.Clear();
+        }
+
+        private void xtraTabControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

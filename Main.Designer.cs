@@ -55,26 +55,24 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.settingsTab = new DevExpress.XtraTab.XtraTabPage();
             this.friendsTab = new DevExpress.XtraTab.XtraTabPage();
             this.heartTab = new DevExpress.XtraTab.XtraTabPage();
-            this.listFavorites = new System.Windows.Forms.ListBox();
+            this.listFavId = new System.Windows.Forms.ListBox();
             this.newsTab = new DevExpress.XtraTab.XtraTabPage();
             this.musicTab = new DevExpress.XtraTab.XtraTabPage();
-            this.settingsTab = new DevExpress.XtraTab.XtraTabPage();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.listFavNames = new System.Windows.Forms.ListBox();
+            this.clear_btn = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
-            this.friendsTab.SuspendLayout();
-            this.heartTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-            this.splitContainerControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listId
@@ -134,9 +132,9 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(91, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 19);
+            this.label1.Size = new System.Drawing.Size(174, 19);
             this.label1.TabIndex = 6;
-            this.label1.Text = "label1";
+            this.label1.Text = "Добро пожаловать!";
             // 
             // timer1
             // 
@@ -181,7 +179,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(236, 30);
             this.label2.TabIndex = 9;
-            this.label2.Text = "label2";
+            this.label2.Text = " ";
             // 
             // label3
             // 
@@ -190,7 +188,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(236, 33);
             this.label3.TabIndex = 10;
-            this.label3.Text = "label3";
+            this.label3.Text = " ";
             // 
             // label4
             // 
@@ -198,9 +196,9 @@
             this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(5, 88);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 14);
+            this.label4.Size = new System.Drawing.Size(11, 14);
             this.label4.TabIndex = 11;
-            this.label4.Text = "label4";
+            this.label4.Text = " ";
             // 
             // pictureBox2
             // 
@@ -270,6 +268,7 @@
             this.status_send.TabIndex = 18;
             this.status_send.Text = "V";
             this.status_send.UseVisualStyleBackColor = true;
+            this.status_send.Visible = false;
             this.status_send.Click += new System.EventHandler(this.status_send_Click);
             // 
             // panelControl2
@@ -347,7 +346,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(12, 135);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.PaintStyleName = "Skin";
-            this.xtraTabControl1.SelectedTabPage = this.friendsTab;
+            this.xtraTabControl1.SelectedTabPage = this.settingsTab;
             this.xtraTabControl1.Size = new System.Drawing.Size(279, 320);
             this.xtraTabControl1.TabIndex = 18;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
@@ -357,11 +356,20 @@
             this.musicTab,
             this.settingsTab});
             this.xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl1_SelectedPageChanged);
+            this.xtraTabControl1.Click += new System.EventHandler(this.xtraTabControl1_Click);
+            // 
+            // settingsTab
+            // 
+            this.settingsTab.Enabled = true;
+            this.settingsTab.Image = global::Kontalka.Properties.Resources.settings;
+            this.settingsTab.Name = "settingsTab";
+            this.settingsTab.Size = new System.Drawing.Size(273, 291);
             // 
             // friendsTab
             // 
             this.friendsTab.Controls.Add(this.listF);
             this.friendsTab.Controls.Add(this.listId);
+            this.friendsTab.Enabled = true;
             this.friendsTab.Image = global::Kontalka.Properties.Resources.friends;
             this.friendsTab.Name = "friendsTab";
             this.friendsTab.Size = new System.Drawing.Size(273, 291);
@@ -369,53 +377,91 @@
             // 
             // heartTab
             // 
-            this.heartTab.Controls.Add(this.listFavorites);
+            this.heartTab.Controls.Add(this.listFavId);
+            this.heartTab.Enabled = true;
             this.heartTab.Image = global::Kontalka.Properties.Resources.heart;
             this.heartTab.Name = "heartTab";
             this.heartTab.Size = new System.Drawing.Size(273, 291);
             // 
-            // listFavorites
+            // listFavId
             // 
-            this.listFavorites.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listFavorites.FormattingEnabled = true;
-            this.listFavorites.Location = new System.Drawing.Point(0, 0);
-            this.listFavorites.Name = "listFavorites";
-            this.listFavorites.Size = new System.Drawing.Size(273, 291);
-            this.listFavorites.TabIndex = 0;
-            this.listFavorites.SelectedIndexChanged += new System.EventHandler(this.listFavorites_SelectedIndexChanged);
+            this.listFavId.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listFavId.FormattingEnabled = true;
+            this.listFavId.Location = new System.Drawing.Point(0, 0);
+            this.listFavId.Name = "listFavId";
+            this.listFavId.Size = new System.Drawing.Size(273, 291);
+            this.listFavId.TabIndex = 0;
+            this.listFavId.SelectedIndexChanged += new System.EventHandler(this.listFavorites_SelectedIndexChanged);
             // 
             // newsTab
             // 
+            this.newsTab.Enabled = true;
             this.newsTab.Image = global::Kontalka.Properties.Resources.news;
             this.newsTab.Name = "newsTab";
             this.newsTab.Size = new System.Drawing.Size(273, 291);
             // 
             // musicTab
             // 
+            this.musicTab.Enabled = true;
             this.musicTab.Image = global::Kontalka.Properties.Resources.music;
             this.musicTab.Name = "musicTab";
             this.musicTab.Size = new System.Drawing.Size(273, 291);
-            // 
-            // settingsTab
-            // 
-            this.settingsTab.Image = global::Kontalka.Properties.Resources.settings;
-            this.settingsTab.Name = "settingsTab";
-            this.settingsTab.Size = new System.Drawing.Size(273, 291);
             // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(297, 159);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            // 
+            // 
+            // 
             this.splitContainerControl1.Panel1.Controls.Add(this.listH);
+            this.splitContainerControl1.Panel1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl1.Panel1.Name = "";
+            this.splitContainerControl1.Panel1.Size = new System.Drawing.Size(380, 234);
+            this.splitContainerControl1.Panel1.TabIndex = 0;
             this.splitContainerControl1.Panel1.Text = "Panel1";
+            // 
+            // 
+            // 
             this.splitContainerControl1.Panel2.Controls.Add(this.textBox1);
             this.splitContainerControl1.Panel2.Controls.Add(this.simpleButton1);
+            this.splitContainerControl1.Panel2.Location = new System.Drawing.Point(0, 239);
+            this.splitContainerControl1.Panel2.Name = "";
+            this.splitContainerControl1.Panel2.Size = new System.Drawing.Size(380, 52);
+            this.splitContainerControl1.Panel2.TabIndex = 1;
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(380, 291);
             this.splitContainerControl1.SplitterPosition = 234;
             this.splitContainerControl1.TabIndex = 19;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(0, 0);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.TabIndex = 0;
+            // 
+            // listFavNames
+            // 
+            this.listFavNames.FormattingEnabled = true;
+            this.listFavNames.Location = new System.Drawing.Point(63, 179);
+            this.listFavNames.Name = "listFavNames";
+            this.listFavNames.Size = new System.Drawing.Size(120, 95);
+            this.listFavNames.TabIndex = 20;
+            // 
+            // clear_btn
+            // 
+            this.clear_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.clear_btn.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.clear_btn.Location = new System.Drawing.Point(34, 179);
+            this.clear_btn.Name = "clear_btn";
+            this.clear_btn.Size = new System.Drawing.Size(216, 23);
+            this.clear_btn.TabIndex = 21;
+            this.clear_btn.Text = "Очистить избранное";
+            this.clear_btn.UseVisualStyleBackColor = true;
+            this.clear_btn.Visible = false;
+            this.clear_btn.Click += new System.EventHandler(this.clear_btn_Click);
             // 
             // Main
             // 
@@ -423,11 +469,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(689, 480);
+            this.Controls.Add(this.clear_btn);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.listFavNames);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Main";
             this.Text = "Конталка";
@@ -437,17 +485,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
-            this.friendsTab.ResumeLayout(false);
-            this.heartTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-            this.splitContainerControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -487,6 +528,9 @@
         private DevExpress.XtraEditors.SimpleButton addUserToFaveButton;
         private DevExpress.XtraEditors.SimpleButton usersProfileButton;
         private DevExpress.XtraTab.XtraTabPage heartTab;
-        private System.Windows.Forms.ListBox listFavorites;
+        private System.Windows.Forms.ListBox listFavId;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private System.Windows.Forms.ListBox listFavNames;
+        private System.Windows.Forms.Button clear_btn;
     }
 }
