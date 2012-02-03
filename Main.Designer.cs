@@ -56,40 +56,46 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.settingsTab = new DevExpress.XtraTab.XtraTabPage();
+            this.clear_btn = new System.Windows.Forms.Button();
             this.friendsTab = new DevExpress.XtraTab.XtraTabPage();
             this.heartTab = new DevExpress.XtraTab.XtraTabPage();
             this.listFavId = new System.Windows.Forms.ListBox();
             this.newsTab = new DevExpress.XtraTab.XtraTabPage();
             this.musicTab = new DevExpress.XtraTab.XtraTabPage();
+            this.musicPanel1 = new Kontalka.Music.MusicPanel();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.listFavNames = new System.Windows.Forms.ListBox();
-            this.clear_btn = new System.Windows.Forms.Button();
-            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
+            this.settingsTab.SuspendLayout();
+            this.friendsTab.SuspendLayout();
+            this.heartTab.SuspendLayout();
+            this.musicTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
+            this.splitContainerControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listId
             // 
-            this.listId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listId.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listId.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listId.FormattingEnabled = true;
             this.listId.Location = new System.Drawing.Point(0, 0);
             this.listId.Name = "listId";
-            this.listId.Size = new System.Drawing.Size(273, 291);
+            this.listId.Size = new System.Drawing.Size(273, 286);
             this.listId.TabIndex = 0;
             this.listId.SelectedIndexChanged += new System.EventHandler(this.listF_SelectedIndexChanged);
             // 
             // textBox1
             // 
             this.textBox1.AcceptsReturn = true;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(0, 0);
@@ -102,8 +108,6 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tStrip1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 458);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(689, 22);
@@ -117,12 +121,12 @@
             // 
             // listF
             // 
-            this.listF.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listF.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listF.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listF.FormattingEnabled = true;
             this.listF.Location = new System.Drawing.Point(0, 0);
             this.listF.Name = "listF";
-            this.listF.Size = new System.Drawing.Size(273, 291);
+            this.listF.Size = new System.Drawing.Size(273, 286);
             this.listF.TabIndex = 4;
             this.listF.Visible = false;
             // 
@@ -142,7 +146,6 @@
             // 
             // listH
             // 
-            this.listH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listH.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.col1,
             this.col2});
@@ -166,9 +169,11 @@
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Image = global::Kontalka.Properties.Resources.logo;
             this.pictureBox1.Location = new System.Drawing.Point(5, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(80, 80);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
@@ -206,6 +211,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(5, 5);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(80, 80);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox2.TabIndex = 12;
             this.pictureBox2.TabStop = false;
             // 
@@ -346,8 +352,8 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(12, 135);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.PaintStyleName = "Skin";
-            this.xtraTabControl1.SelectedTabPage = this.settingsTab;
-            this.xtraTabControl1.Size = new System.Drawing.Size(279, 320);
+            this.xtraTabControl1.SelectedTabPage = this.friendsTab;
+            this.xtraTabControl1.Size = new System.Drawing.Size(279, 315);
             this.xtraTabControl1.TabIndex = 18;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.friendsTab,
@@ -360,76 +366,79 @@
             // 
             // settingsTab
             // 
-            this.settingsTab.Enabled = true;
+            this.settingsTab.Controls.Add(this.clear_btn);
             this.settingsTab.Image = global::Kontalka.Properties.Resources.settings;
             this.settingsTab.Name = "settingsTab";
-            this.settingsTab.Size = new System.Drawing.Size(273, 291);
+            this.settingsTab.Size = new System.Drawing.Size(273, 286);
+            // 
+            // clear_btn
+            // 
+            this.clear_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clear_btn.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.clear_btn.Location = new System.Drawing.Point(26, 20);
+            this.clear_btn.Name = "clear_btn";
+            this.clear_btn.Size = new System.Drawing.Size(216, 23);
+            this.clear_btn.TabIndex = 21;
+            this.clear_btn.Text = "Очистить избранное";
+            this.clear_btn.UseVisualStyleBackColor = true;
+            this.clear_btn.Click += new System.EventHandler(this.clear_btn_Click);
             // 
             // friendsTab
             // 
             this.friendsTab.Controls.Add(this.listF);
             this.friendsTab.Controls.Add(this.listId);
-            this.friendsTab.Enabled = true;
             this.friendsTab.Image = global::Kontalka.Properties.Resources.friends;
             this.friendsTab.Name = "friendsTab";
-            this.friendsTab.Size = new System.Drawing.Size(273, 291);
+            this.friendsTab.Size = new System.Drawing.Size(273, 286);
             this.friendsTab.Text = "Друзья";
             // 
             // heartTab
             // 
             this.heartTab.Controls.Add(this.listFavId);
-            this.heartTab.Enabled = true;
             this.heartTab.Image = global::Kontalka.Properties.Resources.heart;
             this.heartTab.Name = "heartTab";
-            this.heartTab.Size = new System.Drawing.Size(273, 291);
+            this.heartTab.Size = new System.Drawing.Size(273, 286);
             // 
             // listFavId
             // 
+            this.listFavId.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listFavId.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listFavId.FormattingEnabled = true;
             this.listFavId.Location = new System.Drawing.Point(0, 0);
             this.listFavId.Name = "listFavId";
-            this.listFavId.Size = new System.Drawing.Size(273, 291);
+            this.listFavId.Size = new System.Drawing.Size(273, 286);
             this.listFavId.TabIndex = 0;
             this.listFavId.SelectedIndexChanged += new System.EventHandler(this.listFavorites_SelectedIndexChanged);
             // 
             // newsTab
             // 
-            this.newsTab.Enabled = true;
             this.newsTab.Image = global::Kontalka.Properties.Resources.news;
             this.newsTab.Name = "newsTab";
-            this.newsTab.Size = new System.Drawing.Size(273, 291);
+            this.newsTab.Size = new System.Drawing.Size(273, 286);
             // 
             // musicTab
             // 
-            this.musicTab.Enabled = true;
+            this.musicTab.Controls.Add(this.musicPanel1);
             this.musicTab.Image = global::Kontalka.Properties.Resources.music;
             this.musicTab.Name = "musicTab";
-            this.musicTab.Size = new System.Drawing.Size(273, 291);
+            this.musicTab.Size = new System.Drawing.Size(273, 286);
+            // 
+            // musicPanel1
+            // 
+            this.musicPanel1.Location = new System.Drawing.Point(0, 0);
+            this.musicPanel1.Name = "musicPanel1";
+            this.musicPanel1.Size = new System.Drawing.Size(273, 291);
+            this.musicPanel1.TabIndex = 21;
             // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(297, 159);
             this.splitContainerControl1.Name = "splitContainerControl1";
-            // 
-            // 
-            // 
             this.splitContainerControl1.Panel1.Controls.Add(this.listH);
-            this.splitContainerControl1.Panel1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl1.Panel1.Name = "";
-            this.splitContainerControl1.Panel1.Size = new System.Drawing.Size(380, 234);
-            this.splitContainerControl1.Panel1.TabIndex = 0;
             this.splitContainerControl1.Panel1.Text = "Panel1";
-            // 
-            // 
-            // 
             this.splitContainerControl1.Panel2.Controls.Add(this.textBox1);
             this.splitContainerControl1.Panel2.Controls.Add(this.simpleButton1);
-            this.splitContainerControl1.Panel2.Location = new System.Drawing.Point(0, 239);
-            this.splitContainerControl1.Panel2.Name = "";
-            this.splitContainerControl1.Panel2.Size = new System.Drawing.Size(380, 52);
-            this.splitContainerControl1.Panel2.TabIndex = 1;
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(380, 291);
             this.splitContainerControl1.SplitterPosition = 234;
@@ -440,6 +449,7 @@
             // 
             this.simpleButton2.Location = new System.Drawing.Point(0, 0);
             this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
             this.simpleButton2.TabIndex = 0;
             // 
             // listFavNames
@@ -450,26 +460,12 @@
             this.listFavNames.Size = new System.Drawing.Size(120, 95);
             this.listFavNames.TabIndex = 20;
             // 
-            // clear_btn
-            // 
-            this.clear_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.clear_btn.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.clear_btn.Location = new System.Drawing.Point(34, 179);
-            this.clear_btn.Name = "clear_btn";
-            this.clear_btn.Size = new System.Drawing.Size(216, 23);
-            this.clear_btn.TabIndex = 21;
-            this.clear_btn.Text = "Очистить избранное";
-            this.clear_btn.UseVisualStyleBackColor = true;
-            this.clear_btn.Visible = false;
-            this.clear_btn.Click += new System.EventHandler(this.clear_btn_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(689, 480);
-            this.Controls.Add(this.clear_btn);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.panelControl2);
@@ -480,15 +476,22 @@
             this.Name = "Main";
             this.Text = "Конталка";
             this.Load += new System.EventHandler(this.Main_Load);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
+            this.settingsTab.ResumeLayout(false);
+            this.friendsTab.ResumeLayout(false);
+            this.heartTab.ResumeLayout(false);
+            this.musicTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
+            this.splitContainerControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -532,5 +535,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private System.Windows.Forms.ListBox listFavNames;
         private System.Windows.Forms.Button clear_btn;
+        private Music.MusicPanel musicPanel1;
     }
 }

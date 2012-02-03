@@ -57,6 +57,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\DevExpress.XtraEditors.v11.1.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio, Version=1.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -82,10 +86,21 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Music\MusicPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Music\MusicPanel.Designer.cs">
+      <DependentUpon>MusicPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Music\ReadFullyStream.cs" />
+    <Compile Include="Music\VolumeWaveProvider16.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Music\MusicPanel.resx">
+      <DependentUpon>MusicPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -123,6 +138,54 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\heart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_fastforward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_load.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_repeate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_rewind.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_fastforward_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_load_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_pause_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_play_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_repeat_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_rewind_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_stop_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

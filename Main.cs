@@ -408,7 +408,6 @@ namespace Kontalka
                 musicTab.Text = "";
                 settingsTab.Text = "";
                 friendsTab.Text = "Друзья";
-                clear_btn.Visible = false;
             }
             else if (xtraTabControl1.SelectedTabPage == heartTab)
             {
@@ -417,7 +416,6 @@ namespace Kontalka
                 newsTab.Text = "";
                 musicTab.Text = "";
                 settingsTab.Text = "";
-                clear_btn.Visible = false;
             }
             else if (xtraTabControl1.SelectedTabPage == newsTab)
             {
@@ -426,7 +424,6 @@ namespace Kontalka
                 newsTab.Text = "Новости";
                 musicTab.Text = "";
                 settingsTab.Text = "";
-                clear_btn.Visible = false;
             }
             else if (xtraTabControl1.SelectedTabPage == musicTab)
             {
@@ -435,7 +432,6 @@ namespace Kontalka
                 newsTab.Text = "";
                 musicTab.Text = "Музыка";
                 settingsTab.Text = "";
-                clear_btn.Visible = false;
             }
             else if (xtraTabControl1.SelectedTabPage == settingsTab)
             {
