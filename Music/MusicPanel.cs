@@ -32,18 +32,33 @@ namespace Kontalka.Music
         private volatile bool _fullyDownloaded;
         private HttpWebRequest _webRequest;
         private VolumeWaveProvider16 _volumeProvider;
+        private string _songName;
+        private string _urlToSong;
 
-        delegate void ShowErrorDelegate(string message);
-
-        private void ShowError(string message)
+        public String SongName
         {
-            if (InvokeRequired)
+            get
             {
-                BeginInvoke(new ShowErrorDelegate(ShowError), message);
+                return _songName;
             }
-            else
+
+            set
             {
-                MessageBox.Show(message);
+                _songName = value;
+                groupControl1.Text = _songName;
+            }
+        }
+
+        public String UrlToSong
+        {
+            get
+            {
+                return _urlToSong;
+            }
+
+            set { _urlToSong = value;
+                playButton.Enabled = true;
+                Console.WriteLine(_urlToSong);
             }
         }
 
@@ -69,7 +84,7 @@ namespace Kontalka.Music
             {
                 if (e.Status != WebExceptionStatus.RequestCanceled)
                 {
-                    ShowError(e.Message);
+                    Console.WriteLine(e.Message);
                 }
                 return;
             }
@@ -145,7 +160,7 @@ namespace Kontalka.Music
             {
                 _playbackState = StreamingPlaybackState.Buffering;
                 _bufferedWaveProvider = null;
-                ThreadPool.QueueUserWorkItem(StreamMP3, searchButtonEdit.Text);
+                ThreadPool.QueueUserWorkItem(StreamMP3, _urlToSong);
                 timer1.Enabled = true;
             }
             else if (_playbackState == StreamingPlaybackState.Paused)
@@ -258,11 +273,6 @@ namespace Kontalka.Music
             playButton.Visible = true;
             pauseButton.Visible = false;
             stopButton.Enabled = false;
-        }
-
-        private void searchButtonEdit_TextChanged(object sender, EventArgs e)
-        {
-            playButton.Enabled = searchButtonEdit.Text.Length != 0;
         }
     }
 }

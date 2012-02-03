@@ -467,5 +467,11 @@ namespace Kontalka
         {
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            musicPanel1.UrlToSong = textBox4.Text;
+            musicPanel1.SongName = textBox4.Text;
+        }
     }
 }

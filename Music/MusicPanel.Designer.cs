@@ -29,76 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MusicPanel));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.audioListBox = new System.Windows.Forms.ListBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.searchButtonEdit = new DevExpress.XtraEditors.ButtonEdit();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.playButton = new DevExpress.XtraEditors.SimpleButton();
             this.pauseButton = new DevExpress.XtraEditors.SimpleButton();
             this.progressBarBuffer = new DevExpress.XtraEditors.ProgressBarControl();
             this.previousTrackButton = new DevExpress.XtraEditors.SimpleButton();
             this.nextTrackButton = new DevExpress.XtraEditors.SimpleButton();
             this.stopButton = new DevExpress.XtraEditors.SimpleButton();
-            this.playButton = new DevExpress.XtraEditors.SimpleButton();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-            this.splitContainerControl1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.searchButtonEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.progressBarBuffer.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // splitContainerControl1
+            // timer1
             // 
-            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Horizontal = false;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.audioListBox);
-            this.splitContainerControl1.Panel1.Controls.Add(this.panel1);
-            this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.Controls.Add(this.groupControl1);
-            this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(273, 291);
-            this.splitContainerControl1.SplitterPosition = 194;
-            this.splitContainerControl1.TabIndex = 0;
-            this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // audioListBox
-            // 
-            this.audioListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.audioListBox.FormattingEnabled = true;
-            this.audioListBox.Location = new System.Drawing.Point(0, 20);
-            this.audioListBox.Name = "audioListBox";
-            this.audioListBox.Size = new System.Drawing.Size(273, 174);
-            this.audioListBox.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.searchButtonEdit);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(273, 20);
-            this.panel1.TabIndex = 2;
-            // 
-            // searchButtonEdit
-            // 
-            this.searchButtonEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchButtonEdit.Location = new System.Drawing.Point(0, 0);
-            this.searchButtonEdit.Name = "searchButtonEdit";
-            this.searchButtonEdit.Properties.Appearance.Options.UseImage = true;
-            this.searchButtonEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            serializableAppearanceObject2.Options.UseImage = true;
-            this.searchButtonEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.Default, ((System.Drawing.Image)(resources.GetObject("searchButtonEdit.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
-            this.searchButtonEdit.Size = new System.Drawing.Size(273, 20);
-            this.searchButtonEdit.TabIndex = 1;
-            this.searchButtonEdit.TextChanged += new System.EventHandler(this.searchButtonEdit_TextChanged);
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // groupControl1
             // 
@@ -111,9 +57,23 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(273, 92);
-            this.groupControl1.TabIndex = 1;
+            this.groupControl1.Size = new System.Drawing.Size(273, 93);
+            this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "Здесь будет название";
+            // 
+            // playButton
+            // 
+            this.playButton.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.playButton.Appearance.Options.UseBackColor = true;
+            this.playButton.Enabled = false;
+            this.playButton.Image = global::Kontalka.Properties.Resources.control_play;
+            this.playButton.Location = new System.Drawing.Point(140, 44);
+            this.playButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.playButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.playButton.Name = "playButton";
+            this.playButton.Size = new System.Drawing.Size(42, 42);
+            this.playButton.TabIndex = 0;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
             // pauseButton
             // 
@@ -177,35 +137,13 @@
             this.stopButton.TabIndex = 1;
             this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
-            // playButton
-            // 
-            this.playButton.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.playButton.Appearance.Options.UseBackColor = true;
-            this.playButton.Enabled = false;
-            this.playButton.Image = global::Kontalka.Properties.Resources.control_play;
-            this.playButton.Location = new System.Drawing.Point(140, 44);
-            this.playButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
-            this.playButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(42, 42);
-            this.playButton.TabIndex = 0;
-            this.playButton.Click += new System.EventHandler(this.playButton_Click);
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // MusicPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.splitContainerControl1);
+            this.Controls.Add(this.groupControl1);
             this.Name = "MusicPanel";
-            this.Size = new System.Drawing.Size(273, 291);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-            this.splitContainerControl1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.searchButtonEdit.Properties)).EndInit();
+            this.Size = new System.Drawing.Size(273, 93);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.progressBarBuffer.Properties)).EndInit();
@@ -215,17 +153,13 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraEditors.SimpleButton playButton;
+        private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.SimpleButton stopButton;
-        private DevExpress.XtraEditors.ButtonEdit searchButtonEdit;
-        private System.Windows.Forms.ListBox audioListBox;
+        private DevExpress.XtraEditors.SimpleButton playButton;
+        private DevExpress.XtraEditors.SimpleButton pauseButton;
+        private DevExpress.XtraEditors.ProgressBarControl progressBarBuffer;
         private DevExpress.XtraEditors.SimpleButton previousTrackButton;
         private DevExpress.XtraEditors.SimpleButton nextTrackButton;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Panel panel1;
-        private DevExpress.XtraEditors.ProgressBarControl progressBarBuffer;
-        private DevExpress.XtraEditors.SimpleButton pauseButton;
+        private DevExpress.XtraEditors.SimpleButton stopButton;
     }
 }

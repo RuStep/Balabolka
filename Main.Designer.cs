@@ -55,17 +55,21 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.settingsTab = new DevExpress.XtraTab.XtraTabPage();
-            this.clear_btn = new System.Windows.Forms.Button();
             this.friendsTab = new DevExpress.XtraTab.XtraTabPage();
             this.heartTab = new DevExpress.XtraTab.XtraTabPage();
             this.listFavId = new System.Windows.Forms.ListBox();
             this.newsTab = new DevExpress.XtraTab.XtraTabPage();
             this.musicTab = new DevExpress.XtraTab.XtraTabPage();
             this.musicPanel1 = new Kontalka.Music.MusicPanel();
+            this.settingsTab = new DevExpress.XtraTab.XtraTabPage();
+            this.clear_btn = new System.Windows.Forms.Button();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.listFavNames = new System.Windows.Forms.ListBox();
+            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.audioListBox = new System.Windows.Forms.ListBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -74,12 +78,14 @@
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
-            this.settingsTab.SuspendLayout();
             this.friendsTab.SuspendLayout();
             this.heartTab.SuspendLayout();
             this.musicTab.SuspendLayout();
+            this.settingsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
+            this.splitContainerControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // listId
@@ -364,25 +370,6 @@
             this.xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl1_SelectedPageChanged);
             this.xtraTabControl1.Click += new System.EventHandler(this.xtraTabControl1_Click);
             // 
-            // settingsTab
-            // 
-            this.settingsTab.Controls.Add(this.clear_btn);
-            this.settingsTab.Image = global::Kontalka.Properties.Resources.settings;
-            this.settingsTab.Name = "settingsTab";
-            this.settingsTab.Size = new System.Drawing.Size(273, 286);
-            // 
-            // clear_btn
-            // 
-            this.clear_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clear_btn.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.clear_btn.Location = new System.Drawing.Point(26, 20);
-            this.clear_btn.Name = "clear_btn";
-            this.clear_btn.Size = new System.Drawing.Size(216, 23);
-            this.clear_btn.TabIndex = 21;
-            this.clear_btn.Text = "Очистить избранное";
-            this.clear_btn.UseVisualStyleBackColor = true;
-            this.clear_btn.Click += new System.EventHandler(this.clear_btn_Click);
-            // 
             // friendsTab
             // 
             this.friendsTab.Controls.Add(this.listF);
@@ -418,17 +405,39 @@
             // 
             // musicTab
             // 
-            this.musicTab.Controls.Add(this.musicPanel1);
+            this.musicTab.Controls.Add(this.splitContainerControl2);
             this.musicTab.Image = global::Kontalka.Properties.Resources.music;
             this.musicTab.Name = "musicTab";
             this.musicTab.Size = new System.Drawing.Size(273, 286);
             // 
             // musicPanel1
             // 
+            this.musicPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.musicPanel1.Location = new System.Drawing.Point(0, 0);
             this.musicPanel1.Name = "musicPanel1";
-            this.musicPanel1.Size = new System.Drawing.Size(273, 291);
+            this.musicPanel1.Size = new System.Drawing.Size(273, 98);
+            this.musicPanel1.SongName = null;
             this.musicPanel1.TabIndex = 21;
+            this.musicPanel1.UrlToSong = null;
+            // 
+            // settingsTab
+            // 
+            this.settingsTab.Controls.Add(this.clear_btn);
+            this.settingsTab.Image = global::Kontalka.Properties.Resources.settings;
+            this.settingsTab.Name = "settingsTab";
+            this.settingsTab.Size = new System.Drawing.Size(273, 286);
+            // 
+            // clear_btn
+            // 
+            this.clear_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clear_btn.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.clear_btn.Location = new System.Drawing.Point(26, 20);
+            this.clear_btn.Name = "clear_btn";
+            this.clear_btn.Size = new System.Drawing.Size(216, 23);
+            this.clear_btn.TabIndex = 21;
+            this.clear_btn.Text = "Очистить избранное";
+            this.clear_btn.UseVisualStyleBackColor = true;
+            this.clear_btn.Click += new System.EventHandler(this.clear_btn_Click);
             // 
             // splitContainerControl1
             // 
@@ -460,12 +469,56 @@
             this.listFavNames.Size = new System.Drawing.Size(120, 95);
             this.listFavNames.TabIndex = 20;
             // 
+            // splitContainerControl2
+            // 
+            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl2.Horizontal = false;
+            this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl2.Name = "splitContainerControl2";
+            this.splitContainerControl2.Panel1.Controls.Add(this.audioListBox);
+            this.splitContainerControl2.Panel1.Text = "Panel1";
+            this.splitContainerControl2.Panel2.Controls.Add(this.musicPanel1);
+            this.splitContainerControl2.Panel2.Text = "Panel2";
+            this.splitContainerControl2.Size = new System.Drawing.Size(273, 286);
+            this.splitContainerControl2.SplitterPosition = 183;
+            this.splitContainerControl2.TabIndex = 22;
+            this.splitContainerControl2.Text = "splitContainerControl2";
+            // 
+            // audioListBox
+            // 
+            this.audioListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.audioListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.audioListBox.FormattingEnabled = true;
+            this.audioListBox.Location = new System.Drawing.Point(0, 0);
+            this.audioListBox.Name = "audioListBox";
+            this.audioListBox.Size = new System.Drawing.Size(273, 183);
+            this.audioListBox.TabIndex = 0;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(302, 135);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 21;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(408, 133);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(689, 480);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.panelControl2);
@@ -486,12 +539,14 @@
             this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
-            this.settingsTab.ResumeLayout(false);
             this.friendsTab.ResumeLayout(false);
             this.heartTab.ResumeLayout(false);
             this.musicTab.ResumeLayout(false);
+            this.settingsTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
+            this.splitContainerControl2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -536,5 +591,9 @@
         private System.Windows.Forms.ListBox listFavNames;
         private System.Windows.Forms.Button clear_btn;
         private Music.MusicPanel musicPanel1;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
+        private System.Windows.Forms.ListBox audioListBox;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button1;
     }
 }
