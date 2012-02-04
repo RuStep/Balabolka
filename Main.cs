@@ -12,6 +12,7 @@ using ApiCore;
 using ApiCore.Friends;
 using ApiCore.Messages;
 using ApiCore.Status;
+using ApiCore.Audio;
 using Kontalka.Helpers;
 
 
@@ -27,10 +28,11 @@ namespace Kontalka
         private MessagesFactory _messagesFactory;
         private FriendsFactory _friendsFactory;
         private StatusFactory _statusFactory;
+        private AudioFactory _audioFactory;
         private List<Friend> _friendsList;
         private List<Friend> _onlineFriendsList;
         private List<ApiCore.Messages.Message> _messagesList;
-        private List<int> _favoritesList; 
+        private List<AudioEntry> _audioList; 
 
         private string _fname;
         private string _lname;
@@ -45,6 +47,8 @@ namespace Kontalka
         private string _myAvatarUrl;
         private string _mystatus;
         private string _newstatus;
+        private string _audioUrl;
+        private string _audioName;
 
 
         private int _myId;
@@ -295,6 +299,37 @@ namespace Kontalka
             GetHistory();
         }
 
+        private void GetAudio()
+        {
+            try
+            {
+                _audioFactory = new AudioFactory(_manager);
+                _audioList = _audioFactory.Get(_myId, null, null);
+
+                foreach (AudioEntry a in _audioList)
+                {
+                    audioLinksListBox.Items.Add(a.Url);
+                    audioListBox.Items.Add(String.Concat(a.Artist, " - ", a.Title));
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        private void audioListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            audioLinksListBox.SelectedIndex = audioListBox.SelectedIndex;
+
+            _audioUrl = audioLinksListBox.SelectedItem.ToString();
+            _audioName = audioListBox.SelectedItem.ToString();
+
+            musicPanel1.SongName = _audioName;
+            musicPanel1.UrlToSong = _audioUrl;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text != null && textBox1.Text != " ")
@@ -432,6 +467,7 @@ namespace Kontalka
                 newsTab.Text = "";
                 musicTab.Text = "Музыка";
                 settingsTab.Text = "";
+                GetAudio();
             }
             else if (xtraTabControl1.SelectedTabPage == settingsTab)
             {
@@ -466,12 +502,6 @@ namespace Kontalka
         private void xtraTabControl1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            musicPanel1.UrlToSong = textBox4.Text;
-            musicPanel1.SongName = textBox4.Text;
         }
     }
 }
